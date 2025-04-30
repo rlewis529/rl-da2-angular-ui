@@ -1,0 +1,20 @@
+<div class="search-container">
+    <h1>Podcast Search</h1>
+  
+    <input type="text" [(ngModel)]="query" placeholder="Enter podcast topic..." />
+    <button (click)="search()">Search</button>
+  
+    <div *ngIf="loading">Loading...</div>
+    <div *ngIf="error">{{ error }}</div>
+  
+    <div *ngIf="results.length > 0" class="results">
+      <h2>Results:</h2>
+      <ul>
+        <li *ngFor="let podcast of results">
+          <h3>{{ podcast.title }}</h3>
+          <p>{{ podcast.description }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
