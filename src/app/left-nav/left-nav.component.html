@@ -1,0 +1,15 @@
+<aside class="left-nav">
+  <h2>Angular Docs</h2>
+  <div class="pill-group">
+    <a
+      *ngFor="let item of docLinks; let i = index"
+      class="pill"
+      [ngStyle]="{ '--pill-accent': getAccent(i) }"
+      [href]="item.link"
+      target="_blank"
+      rel="noopener"
+    >
+      {{ item.title }}
+    </a>
+  </div>
+</aside>
