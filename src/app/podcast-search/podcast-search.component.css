@@ -19,3 +19,7 @@
     text-align: left;
   }
   
+  .tileView {
+    width: 150px;
+    height: auto;   
+  }
