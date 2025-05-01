@@ -25,8 +25,7 @@ export class PodcastSearchComponent {
 
     this.podcastService.searchPodcasts(this.query).subscribe({
       next: (data) => {
-        console.log('API Response:', data); 
-        // this.results = data?.results || [];
+        console.log('API Response:', data);         
         this.results = Array.isArray(data) ? data : [];
         this.loading = false;
       },
