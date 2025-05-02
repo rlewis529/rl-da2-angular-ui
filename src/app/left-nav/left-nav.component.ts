@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class LeftNavComponent {
   docLinks = [
+    { title: 'Podcast Search', link: '' },
     { title: 'Explore the Docs', link: 'https://angular.dev' },
     { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },
     { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },

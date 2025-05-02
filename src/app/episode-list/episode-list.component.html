@@ -1,0 +1,22 @@
+<h2>Episodes for: {{ showTitle }}</h2>
+
+<table *ngIf="episodes.length > 0; else noEpisodes" class="episode-table">
+  <thead>
+    <tr>
+      <th>Release Date</th>
+      <th>Title</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let episode of episodes">
+      <td>{{ episode.release_date }}</td>
+      <td>{{ episode.name }}</td>
+      <td>{{ formatDuration(episode.duration_ms) }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noEpisodes>
+  <p>No episodes found.</p>
+</ng-template>

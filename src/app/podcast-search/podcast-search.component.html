@@ -16,6 +16,11 @@
           <a [href]="podcast.url" target="_blank" rel="noopener" class="podcast-img-link" [title]="podcast.url">
             <img class="tileView" [src]="podcast.image" [alt]="podcast.name" *ngIf="podcast.image" />
           </a>
+          <a 
+            [routerLink]="['/episodes', podcast.id]"
+            [state]="{ title: podcast.name }"
+          >
+            View Episodes</a>
         </li>
       </ul>
     </div>

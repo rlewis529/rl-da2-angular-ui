@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // <-- Needed for ngModel
 import { PodcastService } from '../podcast.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-podcast-search',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './podcast-search.component.html',
   styleUrls: ['./podcast-search.component.css']
 })
