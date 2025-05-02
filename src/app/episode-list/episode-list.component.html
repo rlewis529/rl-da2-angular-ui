@@ -1,4 +1,18 @@
-<h2>Episodes for: {{ showTitle }}</h2>
+<h2 *ngIf="showTitle; else enterPrompt">Episodes for: {{ showTitle }}</h2>
+
+<ng-template #enterPrompt>
+    <h2>Please enter a show title to view episodes</h2>
+</ng-template>
+
+<div class="search-box">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Enter show title"
+      (keyup.enter)="onSearch()"
+    />
+    <button (click)="onSearch()">Search</button>
+</div>
 
 <table *ngIf="episodes.length > 0; else noEpisodes" class="episode-table">
   <thead>

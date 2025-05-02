@@ -11,11 +11,7 @@ import { CommonModule } from '@angular/common';
 export class LeftNavComponent {
   docLinks = [
     { title: 'Podcast Search', link: '' },
-    { title: 'Explore the Docs', link: 'https://angular.dev' },
-    { title: 'Learn with Tutorials', link: 'https://angular.dev/tutorials' },
-    { title: 'CLI Docs', link: 'https://angular.dev/tools/cli' },
-    { title: 'Language Service', link: 'https://angular.dev/tools/language-service' },
-    { title: 'Angular DevTools', link: 'https://angular.dev/tools/devtools' }
+    { title: 'Episode List', link: 'episodes' }
   ];
 
   getAccent(index: number): string {

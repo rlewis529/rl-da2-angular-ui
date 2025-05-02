@@ -4,5 +4,6 @@ import { EpisodeListComponent } from './episode-list/episode-list.component';
 
 export const routes: Routes = [
   { path: '', component: PodcastSearchComponent },
-  { path: 'episodes/:id', component: EpisodeListComponent }
+  { path: 'episodes/:id', component: EpisodeListComponent },
+  { path: 'episodes', component: EpisodeListComponent }
 ];
