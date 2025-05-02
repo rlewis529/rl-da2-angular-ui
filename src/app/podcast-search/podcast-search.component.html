@@ -11,9 +11,11 @@
       <h2>Results:</h2>
       <ul>
         <li *ngFor="let podcast of results">
-          <h3>{{ podcast.name }}</h3>
+          <h3>{{ podcast.name }} - {{ podcast.episodes}} episodes</h3>
           <p>{{ podcast.description }}</p>
-          <img class="tileView" [src]="podcast.image" alt="{{ podcast.name }}" *ngIf="podcast.image" />
+          <a [href]="podcast.url" target="_blank" rel="noopener" class="podcast-img-link" [title]="podcast.url">
+            <img class="tileView" [src]="podcast.image" [alt]="podcast.name" *ngIf="podcast.image" />
+          </a>
         </li>
       </ul>
     </div>
