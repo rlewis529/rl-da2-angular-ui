@@ -25,7 +25,9 @@
   <tbody>
     <tr *ngFor="let episode of episodes">
       <td>{{ episode.release_date }}</td>
-      <td>{{ episode.name }}</td>
+      <a [href]="episode.url" target="_blank" rel="noopener" [title]="episode.url">
+        <td>{{ episode.name }}</td>
+      </a>
       <td>{{ formatDuration(episode.duration_ms) }}</td>
     </tr>
   </tbody>
