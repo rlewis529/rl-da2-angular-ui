@@ -8,5 +8,5 @@ export const routes: Routes = [
   { path: 'episodes/:id', component: EpisodeListComponent },
   { path: 'episodes', component: EpisodeListComponent },
   { path: 'engagement', component: EngagementMetricsComponent },
-  { path: 'engagement/:id', component: EngagementMetricsComponent }
+  { path: 'engagement/:title', component: EngagementMetricsComponent }
 ];

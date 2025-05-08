@@ -25,8 +25,7 @@
             </a>
             |
             <a 
-              [routerLink]="['/engagement']" 
-              [state]="{ title: podcast.name }"
+              [routerLink]="['/engagement', encodeTitle(podcast.name)]"               
             >
               Audience Engagement
             </a>

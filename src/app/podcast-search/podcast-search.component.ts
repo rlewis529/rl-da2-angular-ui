@@ -37,4 +37,8 @@ export class PodcastSearchComponent {
       }
     });
   }
+  
+  encodeTitle(title: string): string {
+    return encodeURIComponent(title);
+  }
 }

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
 })
 export class EngagementMetricsComponent {
   private route = inject(ActivatedRoute);
-  private router = inject(Router);
   private http = inject(HttpClient);
 
   showTitle: string = '';
@@ -22,24 +21,22 @@ export class EngagementMetricsComponent {
   youtubeBuzz: any = null;
 
   ngOnInit(): void {
-    // If user navigated with a show title (via router state), fetch immediately
-    const passedTitle = history.state?.title;
-    if (passedTitle) {
-      this.searchTerm = passedTitle;
-      this.showTitle = passedTitle;
-      this.fetchMetricsByTitle(passedTitle);
+    const titleParam = this.route.snapshot.paramMap.get('title');
+
+    if (titleParam) {
+      const decodedTitle = decodeURIComponent(titleParam);
+      this.showTitle = decodedTitle;
+      this.searchTerm = decodedTitle;
+      this.fetchMetricsByTitle(decodedTitle);
     }
   }
 
   fetchMetricsByTitle(title: string): void {
-    const encodedTitle = encodeURIComponent(title);
+    const encoded = encodeURIComponent(title);    
 
-    // Fetch YouTube buzz
-    this.http.get<any>(`http://localhost:5000/youtube-buzz?q=${encodedTitle}`)
+    this.http.get<any>(`http://localhost:5000/youtube-buzz?q=${encoded}`)
       .subscribe({
-        next: data => {
-          this.youtubeBuzz = data;
-        },
+        next: data => this.youtubeBuzz = data,
         error: err => {
           console.error('Error fetching YouTube buzz data', err);
           this.youtubeBuzz = null;
@@ -50,10 +47,7 @@ export class EngagementMetricsComponent {
   onSearch(): void {
     if (this.searchTerm.trim()) {
       this.fetchMetricsByTitle(this.searchTerm.trim());
+      this.showTitle = this.searchTerm.trim();
     }
-  }
-
-  formatDate(dateStr: string): string {
-    return new Date(dateStr).toLocaleDateString();
   }
 }
