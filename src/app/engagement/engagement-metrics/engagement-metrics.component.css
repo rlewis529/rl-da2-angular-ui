@@ -1,0 +1,31 @@
+.search-box {
+    margin-bottom: 1rem;
+  }
+  
+  .search-box input {
+    padding: 6px;
+    width: 60%;
+    margin-right: 8px;
+  }
+  
+  .search-box button {
+    padding: 6px 12px;
+  }
+  
+  .metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .metrics-table th,
+  .metrics-table td {
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    text-align: left;
+  }
+  
+  .metrics-table th {
+    background-color: #f0f0f0;
+  }
+  

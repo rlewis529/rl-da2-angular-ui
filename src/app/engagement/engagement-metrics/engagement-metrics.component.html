@@ -1,0 +1,58 @@
+<h2 *ngIf="showTitle; else prompt">Engagement Metrics for: {{ showTitle }}</h2>
+<ng-template #prompt>
+  <h2>Search for a show to view engagement data</h2>
+</ng-template>
+
+<!-- Search Box -->
+<div class="search-box">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    placeholder="Enter show title"
+    (keyup.enter)="onSearch()"
+  />
+  <button (click)="onSearch()">Search</button>
+</div>
+
+<!-- Engagement Metrics Table -->
+<table *ngIf="metrics.length > 0" class="metrics-table">
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of metrics">
+      <td>{{ item.name }}</td>
+      <td>{{ item.value }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- YouTube Channel Summary -->
+<div *ngIf="youtubeBuzz?.channel_name">
+  <h3>YouTube Channel: {{ youtubeBuzz.channel_name }}</h3>
+  <p>
+    Channel ID: {{ youtubeBuzz.channel_id }}<br />
+    Total Comments (last {{ youtubeBuzz.video_count }} videos): {{ youtubeBuzz.total_comment_count }}
+  </p>
+</div>
+
+<!-- YouTube Videos Table -->
+<table *ngIf="youtubeBuzz?.videos?.length > 0" class="youtube-table">
+  <thead>
+    <tr>
+      <th>Published</th>
+      <th>Title</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let video of youtubeBuzz.videos">
+      <td>{{ video.published_at | date: 'shortDate' }}</td>
+      <td>{{ video.title }}</td>
+      <td>{{ video.comment_count }}</td>
+    </tr>
+  </tbody>
+</table>
