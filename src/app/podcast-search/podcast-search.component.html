@@ -16,11 +16,21 @@
           <a [href]="podcast.url" target="_blank" rel="noopener" class="podcast-img-link" [title]="podcast.url">
             <img class="tileView" [src]="podcast.image" [alt]="podcast.name" *ngIf="podcast.image" />
           </a>
-          <a 
-            [routerLink]="['/episodes', podcast.id]"
-            [state]="{ title: podcast.name }"
-          >
-            View Episodes</a>
+          <div class="link-group">
+            <a 
+              [routerLink]="['/episodes', podcast.id]"
+              [state]="{ title: podcast.name }"
+            >
+              View Episodes
+            </a>
+            |
+            <a 
+              [routerLink]="['/engagement']" 
+              [state]="{ title: podcast.name }"
+            >
+              Audience Engagement
+            </a>
+          </div>          
         </li>
       </ul>
     </div>

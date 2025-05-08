@@ -12,39 +12,48 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./engagement-metrics.component.css']
 })
 export class EngagementMetricsComponent {
-  route = inject(ActivatedRoute);
-  router = inject(Router);
-  http = inject(HttpClient);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private http = inject(HttpClient);
 
-  showId: string | null = null;
   showTitle: string = '';
   searchTerm: string = '';
   metrics: any[] = [];
   youtubeBuzz: any = null;
 
-  ngOnInit() {
-    this.showId = this.route.snapshot.paramMap.get('id');
-    this.showTitle = history.state?.title || '';    
+  ngOnInit(): void {
+    // If user navigated with a show title (via router state), fetch immediately
+    const passedTitle = history.state?.title;
+    if (passedTitle) {
+      this.searchTerm = passedTitle;
+      this.showTitle = passedTitle;
+      this.fetchMetricsByTitle(passedTitle);
+    }
   }
 
-  fetchMetricsByTitle(title: string) {
-    const encodedTitle = encodeURIComponent(title);    
-    // YouTube buzz metrics (new)
+  fetchMetricsByTitle(title: string): void {
+    const encodedTitle = encodeURIComponent(title);
+
+    // Fetch YouTube buzz
     this.http.get<any>(`http://localhost:5000/youtube-buzz?q=${encodedTitle}`)
-    .subscribe({
-      next: data => {
-        this.youtubeBuzz = data;
-      },
-      error: err => {
-        console.error('Error fetching YouTube buzz data', err);
-        this.youtubeBuzz = null;
-      }
-    });
+      .subscribe({
+        next: data => {
+          this.youtubeBuzz = data;
+        },
+        error: err => {
+          console.error('Error fetching YouTube buzz data', err);
+          this.youtubeBuzz = null;
+        }
+      });
   }
 
-  onSearch() {
+  onSearch(): void {
     if (this.searchTerm.trim()) {
       this.fetchMetricsByTitle(this.searchTerm.trim());
     }
+  }
+
+  formatDate(dateStr: string): string {
+    return new Date(dateStr).toLocaleDateString();
   }
 }
